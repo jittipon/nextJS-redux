@@ -20,27 +20,51 @@ let todos = [
 	},
 	{
 		id: nanoid(),
-		title: 'benz c class',
+		title: 'benz',
 		completed: false,
 	},
 	{
 		id: nanoid(),
-		title: 'toyota corola',
+		title: 'toyota',
 		completed: false,
 	},
 	{
 		id: nanoid(),
-		title: 'bmw x5',
+		title: 'bmw',
 		completed: false,
 	},
 	{
 		id: nanoid(),
-		title: 'audi a4',
+		title: 'audi',
 		completed: false,
 	},
+	// {
+	// 	id: nanoid(),
+	// 	title: 'bmw',
+	// 	completed: true,
+	// },
 ];
 
-app.get('/todos', (req, res) => res.send(todos));
+app.get('/todos', (req, res) => res.status(200).send(todos));
+
+app.get('/todos/:title', (req, res) => {
+	const title = req.params.title;
+	// const todo = todos.find((todo) => todo.title === title);
+	let todo = [];
+
+	todos.forEach((e) => {
+		if (e.title === title) {
+			todo.push(e);
+		}});
+
+
+	if (!title) {
+		return res.status(400).send('id is required');
+	} else {
+		res.status(200).send(todo);
+	}
+
+});
 
 app.post('/todos', (req, res) => {
 	const todo = { title: req.body.title, id: nanoid(), completed: false };
@@ -56,13 +80,11 @@ app.patch('/todos/:id', (req, res) => {
 
 	if (index > -1) {
 
-		if(completed != "undefined")
-		{
+		if (completed != "undefined") {
 			todos[index].completed = completed;
 
 		}
-		if(title != "undefined")
-		{
+		if (title != "undefined") {
 			todos[index].title = title;
 
 		}

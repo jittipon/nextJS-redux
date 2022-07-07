@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import TodoItem from './TodoItem';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTodoAsync } from '../redux/todoSlice';
+import { getTodoAsync, getTodoAsyncByID } from '../redux/todoSlice';
 
 const TodoList = () => {
 
@@ -13,6 +13,11 @@ const TodoList = () => {
 	useEffect(() => {
 
 		dispatch(getTodoAsync());
+		// dispatch(
+		// 	getTodoAsyncByID({
+		// 		title: "bmw",
+		// 	})
+		// );
 
 
 	}, [dispatch]);

@@ -6,8 +6,27 @@ export const getTodoAsync = createAsyncThunk(
         const response = await fetch('http://localhost:7000/todos');
         if(response.ok){
             const todos = await response.json();
+            console.log(todos);
+
             return {todos};
 
+        }
+    }
+
+)
+
+export const getTodoAsyncByID = createAsyncThunk(
+    'todos/getTodoAsyncByID',
+    async (payload) => {
+        const response = await fetch(`http://localhost:7000/todos/${payload.title}`);
+        if(response.ok){
+            const todos = await response.json();
+            console.log("success req");
+            console.log(todos);
+            return {todos};
+
+        } else {
+            console.log("false req");
         }
     }
 
@@ -114,15 +133,15 @@ const todoSlice = createSlice({
         // },
     ],
     reducers: {
-        addTodo: (state, action) => {
-            const newTodo ={
-                id: Date.now(),
-                title: action.payload.title,
-                completed: false
-            };
+        // addTodo: (state, action) => {
+        //     const newTodo ={
+        //         id: Date.now(),
+        //         title: action.payload.title,
+        //         completed: false
+        //     };
 
-            state.push(newTodo);
-        },
+        //     state.push(newTodo);
+        // },
         toggleComplete: (state, action) => {
              const index = state.findIndex(
                 (todo) => todo.id === action.payload.id
@@ -149,6 +168,17 @@ const todoSlice = createSlice({
         },
         [getTodoAsync.fulfilled]: (state, action) => {
             console.log('fecthing successfully!');
+            console.log(action.payload.todos);
+
+            return  action.payload.todos;
+
+        },
+        [getTodoAsyncByID.pending]: (state, action) => {
+            console.log('searching todos....');
+        },
+        [getTodoAsyncByID.fulfilled]: (state, action) => {
+            console.log('searching successfully!');
+            console.log(action.payload.todo);
             return  action.payload.todos;
 
         },
