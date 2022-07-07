@@ -1,3 +1,9 @@
+@import "mixins";
+
+
+$color-primary: #0070f3;
+
+
 .container {
   padding: 0 2rem;
 }
@@ -20,23 +26,23 @@
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
 }
 
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
 
-.title a {
-  color: #0070f3;
+
+.title {
+  color: $color-primary;
   text-decoration: none;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
+.title :hover {
   text-decoration: underline;
 }
 
@@ -89,8 +95,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: $color-primary;
+  border-color: $color-primary;
 }
 
 .card h2 {
@@ -109,9 +115,9 @@
   margin-left: 0.5rem;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+@include desktop () {
+  .title {
+  color: #bb2d3b;
+
   }
 }
