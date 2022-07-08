@@ -1,0 +1,51 @@
+.navbar {
+    height: 70px;
+    width: 100%;
+    background: rgb(42, 58, 107);
+    color: var(--colors-text);
+    position: fixed;
+    top: 0;
+    padding: 0 10vw;
+    font-weight: bold;
+    border-bottom: 1px solid var(--color-gray);
+    z-index: 99;
+    
+
+    
+  .ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+  }
+  
+  .li {
+    border-radius: 50%;
+    
+  }
+
+  }
+
+.logoutBtn {
+    color: brown;
+    background-color: brown;
+}
+
+.btnLogo {
+    background-color: var(--color-text);
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+}
+  
