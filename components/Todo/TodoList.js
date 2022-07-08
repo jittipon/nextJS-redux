@@ -19,7 +19,6 @@ const TodoList = () => {
 		// 	})
 		// );
 
-
 	}, [dispatch]);
 
 	// const todos = [

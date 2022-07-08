@@ -6,6 +6,7 @@ import { auth } from '../lib/firebase';
 import { signOut } from 'firebase/auth';
 import styles from '../styles/Home.module.scss'
 import { firestore, googleAuthProvider } from '../lib/firebase';
+import { Button, ButtonGroup } from '@chakra-ui/react'
 
 // Top navbar
 export default function Navbar() {
@@ -22,11 +23,14 @@ export default function Navbar() {
     const signInWithGoogle = async () => {
       await auth.signInWithPopup(googleAuthProvider);
     };
-  
+
     return (
-        <button className="btn-google" onClick={signInWithGoogle}>
-          <img src={'../assets/google.png'} width="30px" /> Sign in with Google
-        </button>
+      <div className={styles.googleBtn} onClick={signInWithGoogle}>
+        <div className={styles.wrapper}>
+          <img className={styles.icon} src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+        </div>
+        <p className={styles.btn}><b>Sign in with google</b></p>
+      </div>
     );
   }
 
@@ -36,33 +40,30 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <ul>
-        <li>
-          <Link href="/">
-            <button className={styles.btnLogo}>NXT</button>
-          </Link>
-        </li>
+      <div>
+        <Link href="/">
+          <button className={styles.btnLogo}>JITTIPON</button>
+        </Link>
+      </div>
 
+      <div style={{ display: "flex", flexDirection: "row" }}>
         {/* user is signed-in and has username */}
         {username && (
           <>
-            <li className={styles.logoutBtn}>
-              <button onClick={signOutNow}>Sign Out</button>
-            </li>
-            <li>
-              {/* <Link href={`/${username}`}> */}
-              <Link href={`/`}>
-                <img src={user?.photoURL || '/hacker.png'} />
-              </Link>
-            </li>
+            <Button style={{marginRight:"2rem"}} colorScheme='red' variant='solid' onClick={signOutNow}>
+              Logout
+            </Button>
+            {/* <button style={{marginRight:"0.5rem"}} onClick={signOutNow}>Sign Out</button> */}
+            <Link href={`/`}>
+              <img src={user?.photoURL || '/hacker.png'} width="40px" height="30px" />
+            </Link>
           </>
         )}
-
         {/* user is not signed OR has not created username */}
         {!username && (
-          <SignInButton/>
+          <SignInButton />
         )}
-      </ul>
+      </div>
     </nav>
   );
 }
