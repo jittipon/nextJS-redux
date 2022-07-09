@@ -1,13 +1,21 @@
 
 
 .form {
-    background-color: azure;
+    width: 50rem;
+    height: 20rem;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     
 
-
-
     h3 {
-        color: black;
-        font-size: 2rem;
+        color: rgb(95, 95, 95);
+        font-size: 3rem;
+        margin-bottom: 2rem;
     }
 }

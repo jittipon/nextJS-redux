@@ -19,6 +19,8 @@ $color-yellow: #eec255;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-left: 3rem;
+  padding-right: 3rem;
   // width: 20rem;
 }
 
@@ -40,7 +42,7 @@ $color-yellow: #eec255;
 
 .title {
   height: 100%;
-  font-size: 9rem;
+  font-size: 5rem;
   text-align: center;
   /* Fallback: Set a background color. */
   background-color: #CA4246;
@@ -95,11 +97,11 @@ $color-yellow: #eec255;
     }
 }
 
-.entertext {
+.welcome {
   font-size: 2rem;
   text-align: center;
-  color: #080606;
-  margin-top: 2rem;
+  color: #9b1717;
+  margin-top: 7rem;
 }
 
 .code {

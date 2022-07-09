@@ -42,11 +42,8 @@ export default function Home() {
         )}
 
         {!username && (
-          <div>
-            <Box w='100%' h='100vh' bgGradient='linear(to-r, green.100, pink.100)' className={styles.box}>
-              <h1 className={styles.entertext}>Please Login !!</h1>
-
-            </Box>
+          <div className={styles.welcome}>
+            <h1>please login with your google account too see my project (safe for sure!)</h1>
           </div>
 
         )}

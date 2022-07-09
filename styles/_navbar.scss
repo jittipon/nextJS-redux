@@ -85,17 +85,17 @@ $button-active-blue: #1669F2;
 .username {
   width: 100%;
   // height: 3rem;
-  background-color: coral;
+  // background-color: coral;
   display: flex;
   text-align: center;
   justify-content: center;
   align-items: center;
-  margin-right: 2rem;
+  margin-right: 0rem;
 
   h1 {
     font-size: 1.5rem;
-    font-weight: 500;
-    color: white;
+    font-weight: bold;
+    color: black;
   }
 }
   

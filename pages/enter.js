@@ -7,6 +7,10 @@ import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useEffect, useState, useCallback, useContext } from 'react';
 import debounce from 'lodash.debounce';
+import { Input , InputGroup, InputLeftElement } from '@chakra-ui/react'
+import {AtSignIcon,} from '@chakra-ui/icons'
+import { IoIosLogOut } from 'react-icons/io';
+
 
 export default function Enter(props) {
   const { user, username } = useContext(UserContext);
@@ -43,7 +47,10 @@ export default function Enter(props) {
       {user ?
         !username
           ? <UsernameForm />
-          : <SignOutButton />
+          : <div style={{display:"flex",alignItems:"center",flexDirection:"column"}}>
+            <h1 style={{fontSize:"2rem",marginBottom:"2rem"}}>Welcome {username}</h1>
+            <SignOutButton />
+          </div>
         : <SignInButton />}
     </div>
   );
@@ -76,7 +83,9 @@ export default function Enter(props) {
     return <Button style={{ marginRight: "2rem" }}
       colorScheme='red'
       variant='solid'
-      onClick={signOutNow}>
+      onClick={signOutNow}
+      leftIcon={<IoIosLogOut />}
+      >
       Logout
     </Button>
   }
@@ -149,21 +158,32 @@ export default function Enter(props) {
     return (
       !username && (
         <div className={styles.form}>
-          <h3>Choose Username</h3>
+          <h3>set your username</h3>
           <form onSubmit={onSubmit}>
-            <input name="username" placeholder="myname" value={formValue} onChange={onChange} />
+            {/* <input name="username" placeholder="myname" value={formValue} onChange={onChange} /> */}
+            <InputGroup>
+              <InputLeftElement
+                pointerEvents='none'
+                children={<AtSignIcon color='gray.300' />}
+                
+              />
+              <Input name="username" placeholder="myname" value={formValue} onChange={onChange} />
+            </InputGroup>
             <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
-            <button type="submit" style={{ marginTop: "2rem"}} className='btn btn-success mb-2' disabled={!isValid}>
-              Choose
-            </button>
-            <h3>Debug State</h3>
+            <div>
+
+              <button type="submit" style={{ marginTop: "2rem" }} className='btn btn-success mb-2' disabled={!isValid}>
+                Choose
+              </button>
+            </div>
+            {/* <h3>Debug State</h3>
             <div>
               Username: {formValue}
               <br />
               Loading: {loading.toString()}
               <br />
               Username Valid: {isValid.toString()}
-            </div>
+            </div> */}
           </form>
         </div>
       )
@@ -171,12 +191,12 @@ export default function Enter(props) {
   }
 
   function UsernameMessage({ username, isValid, loading }) {
-    if (loading) {
-      return <p>Checking... <CircularProgress isIndeterminate color='green.300' /></p>;
-    } else if (isValid) {
-      return <p style={{color:"green"}}>{username} is available!</p>;
+    if (loading && username.length >= 3) {
+      return <p>Checking... <CircularProgress size='20px' isIndeterminate color='green.300' /></p>;
+    } else if (isValid && username.length >= 3) {
+      return <p style={{ color: "green" }}>{username} is available!</p>;
     } else if (username && !isValid) {
-      return <p style={{color:"red"}}>That username is taken!</p>;
+      return <p style={{ color: "red" }}>That username is taken!</p>;
     } else {
       return <p></p>;
     }

@@ -10,7 +10,10 @@ import { Button, ButtonGroup } from '@chakra-ui/react'
 import toast from 'react-hot-toast';
 import { useEffect } from 'react';
 import { useState } from 'react';
-// Top navbar
+import { IoIosLogOut } from 'react-icons/io';
+
+
+
 export default function Navbar() {
   const { user, username } = useContext(UserContext);
   const [log, setlog] = useState(false);
@@ -74,7 +77,7 @@ export default function Navbar() {
             <div className={styles.username}>
               <h1>{username}</h1>
             </div>
-            <Button style={{ marginRight: "2rem" }} colorScheme='red' variant='solid' onClick={signOutNow}>
+            <Button style={{ marginRight: "2rem",width:"10rem" }} colorScheme='red' variant='solid' onClick={signOutNow} leftIcon={<IoIosLogOut />}>
               Logout
             </Button>
             <div style={{ cursor: "pointer",width:"5rem"}}>
