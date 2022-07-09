@@ -9,7 +9,6 @@ const TodoList = () => {
 
 	const dispatch = useDispatch();
 
-
 	useEffect(() => {
 
 		dispatch(getTodoAsync());

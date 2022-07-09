@@ -11,25 +11,11 @@ import { Box } from '@chakra-ui/react'
 import { useContext } from 'react';
 import { UserContext } from '../lib/context';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function Home() {
-  let isLogin = false;
   const { user, username } = useContext(UserContext);
-  
-  useEffect(() => {
-    console.log(isLogin);
-    if(username != null)
-    {
-      isLogin = true;
-    console.log("isLogin = true");
-    
-  } else {
-    isLogin = false;
-    console.log("isLogin = false");
-    }
-  }, []);
 
-  console.log(username);
 
   return (
     <div className={styles.container}>
@@ -40,38 +26,14 @@ export default function Home() {
       </Head>
 
       <main >
-        {username && (
-          <>
-              <h1 className={styles.title}>Jittipon.resume.website</h1>
-
-            {/* <button className='btn btn-success' onClick={() => toast.success('hello toast!')}>
-          Toast Me
-        </button> */}
-            <Link href="/Result" >
-              <a>another page</a>
-            </Link>
-
-            <AddTodoForm />
-            <TodoList />
-            <TotalCompleteItems />
-          </>
-        )}
-
-        {!username && isLogin && (
+        {!username && (
           <div className={styles.welcome}>
-            <h1>Loader</h1>
+            <h1>Please Login too see my project with your google account</h1>
+            <h1>safe for sure!</h1>
+
           </div>
 
         )}
-
-        {!username && !isLogin && (
-          <div className={styles.welcome}>
-            <h1>please login with your google account too see my project (safe for sure!)</h1>
-          </div>
-
-        )}
-
-
 
       </main>
 

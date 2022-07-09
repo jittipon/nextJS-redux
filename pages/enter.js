@@ -11,11 +11,14 @@ import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { AtSignIcon, } from '@chakra-ui/icons'
 import { IoIosLogOut } from 'react-icons/io';
 import { BeatLoader } from '@chakra-ui/react'
+import { useDispatch } from 'react-redux';
+import { increment } from '../redux/counterSlice';
 
 export default function Enter(props) {
   const { user, username } = useContext(UserContext);
   const [log, setlog] = useState(false);
   const router = useRouter();
+	const dispatch = useDispatch();
 
   useEffect(() => {
     console.log(user);
@@ -24,7 +27,7 @@ export default function Enter(props) {
       toast.success('login sucess!')
       console.log('login sucess!');
       setlog(false);
-
+      dispatch(increment());
 
     } else if (user == null && log == true) {
       toast.success('logout sucess!',
@@ -76,7 +79,7 @@ export default function Enter(props) {
     signOut(auth);
     // toast.success('logout sucess!')
     setlog(true);
-    router.reload();
+    // router.reload();
   }
   // Sign out button
   function SignOutButton() {

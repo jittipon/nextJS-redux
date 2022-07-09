@@ -22,14 +22,8 @@ export default function Navbar() {
 
   useEffect(() => {
     console.log(user);
-
-    if (user != null && log == true) {
-      toast.success('login sucess!')
-      console.log('login sucess!');
-      setlog(false);
-
-
-    } else if (user == null && log == true) {
+    
+    if (user == null && log == true) {
       toast.success('logout sucess!',
         {
           icon: '👏',
@@ -49,7 +43,8 @@ export default function Navbar() {
     signOut(auth);
     // toast.success('logout sucess!')
     setlog(true);
-    router.reload();
+    router.push('/');
+    // router.reload();
   }
 
   function SignInButton() {
@@ -74,11 +69,22 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <div>
+      {!username && (
+        <div>
         <Link href="/">
           <button className={styles.btnLogo}>JITTIPON</button>
         </Link>
       </div>
+      )}
+
+      {username && (
+        <div>
+        <Link href="/todopage">
+          <button className={styles.btnLogo}>JITTIPON</button>
+        </Link>
+      </div>
+      )}
+      
 
       <div style={{ display: "flex", flexDirection: "row" }}>
         {/* user is signed-in and has username */}
