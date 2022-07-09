@@ -7,10 +7,10 @@ import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useEffect, useState, useCallback, useContext } from 'react';
 import debounce from 'lodash.debounce';
-import { Input , InputGroup, InputLeftElement } from '@chakra-ui/react'
-import {AtSignIcon,} from '@chakra-ui/icons'
+import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
+import { AtSignIcon, } from '@chakra-ui/icons'
 import { IoIosLogOut } from 'react-icons/io';
-
+import { BeatLoader } from '@chakra-ui/react'
 
 export default function Enter(props) {
   const { user, username } = useContext(UserContext);
@@ -47,8 +47,8 @@ export default function Enter(props) {
       {user ?
         !username
           ? <UsernameForm />
-          : <div style={{display:"flex",alignItems:"center",flexDirection:"column"}}>
-            <h1 style={{fontSize:"2rem",marginBottom:"2rem"}}>Welcome {username}</h1>
+          : <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
+            <h1 style={{ fontSize: "2rem", marginBottom: "2rem" }}>Welcome {username}</h1>
             <SignOutButton />
           </div>
         : <SignInButton />}
@@ -85,7 +85,7 @@ export default function Enter(props) {
       variant='solid'
       onClick={signOutNow}
       leftIcon={<IoIosLogOut />}
-      >
+    >
       Logout
     </Button>
   }
@@ -165,16 +165,14 @@ export default function Enter(props) {
               <InputLeftElement
                 pointerEvents='none'
                 children={<AtSignIcon color='gray.300' />}
-                
+
               />
               <Input name="username" placeholder="myname" value={formValue} onChange={onChange} />
             </InputGroup>
             <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
             <div>
 
-              <button type="submit" style={{ marginTop: "2rem" }} className='btn btn-success mb-2' disabled={!isValid}>
-                Choose
-              </button>
+
             </div>
             {/* <h3>Debug State</h3>
             <div>
@@ -192,9 +190,22 @@ export default function Enter(props) {
 
   function UsernameMessage({ username, isValid, loading }) {
     if (loading && username.length >= 3) {
-      return <p>Checking... <CircularProgress size='20px' isIndeterminate color='green.300' /></p>;
+      return <div>
+        <p>Checking... </p>
+        <Button isLoading colorScheme='teal' variant='solid'>
+          Email
+        </Button>
+      </div>
     } else if (isValid && username.length >= 3) {
-      return <p style={{ color: "green" }}>{username} is available!</p>;
+      return <div>
+        <p style={{ color: "green" }}>{username} is available!</p>
+        <Button colorScheme='teal' variant='solid' type='submit' disabled={!isValid}> 
+          Choose
+        </Button>
+        {/* <button type="submit" style={{ marginTop: "2rem" }} className='btn btn-primary mb-2' disabled={!isValid}>
+          Choose
+        </button> */}
+      </div>
     } else if (username && !isValid) {
       return <p style={{ color: "red" }}>That username is taken!</p>;
     } else {

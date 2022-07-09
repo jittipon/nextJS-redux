@@ -10,10 +10,26 @@ import toast from 'react-hot-toast';
 import { Box } from '@chakra-ui/react'
 import { useContext } from 'react';
 import { UserContext } from '../lib/context';
+import { useEffect } from 'react';
 
 export default function Home() {
-
+  let isLogin = false;
   const { user, username } = useContext(UserContext);
+  
+  useEffect(() => {
+    console.log(isLogin);
+    if(username != null)
+    {
+      isLogin = true;
+    console.log("isLogin = true");
+    
+  } else {
+    isLogin = false;
+    console.log("isLogin = false");
+    }
+  }, []);
+
+  console.log(username);
 
   return (
     <div className={styles.container}>
@@ -41,7 +57,14 @@ export default function Home() {
           </>
         )}
 
-        {!username && (
+        {!username && isLogin && (
+          <div className={styles.welcome}>
+            <h1>Loader</h1>
+          </div>
+
+        )}
+
+        {!username && !isLogin && (
           <div className={styles.welcome}>
             <h1>please login with your google account too see my project (safe for sure!)</h1>
           </div>

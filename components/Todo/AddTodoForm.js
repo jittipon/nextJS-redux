@@ -15,7 +15,7 @@ const AddTodoForm = () => {
 		event.preventDefault();
 		console.log('user entered: ' + value);
 
-		if(value.length == 0) {
+		if(value.length == 0 ) {
 			toast.error('Please enter a todo item');
 		}
 		else {
@@ -24,6 +24,7 @@ const AddTodoForm = () => {
 					title: value,
 				})
 			);
+			setValue('');
 			toast.success('add! ' + value);
 		}
 

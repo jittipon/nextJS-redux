@@ -25,11 +25,21 @@ export default function Navbar() {
 
     if (user != null && log == true) {
       toast.success('login sucess!')
+      console.log('login sucess!');
       setlog(false);
 
 
-    } else if (log == true) {
-      toast.success('logout sucess!')
+    } else if (user == null && log == true) {
+      toast.success('logout sucess!',
+        {
+          icon: '👏',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        })
+      console.log('logout sucess!');
       setlog(false);
 
     }
