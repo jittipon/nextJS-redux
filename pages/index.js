@@ -28,7 +28,7 @@ export default function Home() {
       <main >
         {!username && (
           <div className={styles.welcome}>
-            <h1>Please Login too see my project with your google account</h1>
+            <h1>Please Login too see my project</h1>
             <h1>safe for sure!</h1>
 
           </div>
