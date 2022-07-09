@@ -6,9 +6,9 @@ $button-active-blue: #1669F2;
 
 
 .navbar {
-    height: 70px;
+    height: 5rem;
     width: 100%;
-    background: rgb(42, 58, 107);
+    background: rgb(255, 255, 255);
     color: var(--colors-text);
     position: fixed;
     top: 0;
@@ -79,6 +79,23 @@ $button-active-blue: #1669F2;
   }
   &:active {
     background: $button-active-blue;
+  }
+}
+
+.username {
+  width: 100%;
+  // height: 3rem;
+  background-color: coral;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
   }
 }
   

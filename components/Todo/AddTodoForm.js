@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodoAsync } from '../../redux/todoSlice';
+import toast from 'react-hot-toast';
+
+var regexp = /\s/g
 
 const AddTodoForm = () => {
 	const [value, setValue] = useState('');
@@ -12,11 +15,17 @@ const AddTodoForm = () => {
 		event.preventDefault();
 		console.log('user entered: ' + value);
 
-		dispatch(
-			addTodoAsync({
-				title: value,
-			})
-		);
+		if(value.length == 0) {
+			toast.error('Please enter a todo item');
+		}
+		else {
+			dispatch(
+				addTodoAsync({
+					title: value,
+				})
+			);
+			toast.success('add! ' + value);
+		}
 
 	};
 

@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 
 
-export default function Cart() {
+export default function Result() {
 
   const todos = useSelector((state) => state.todos);
 
@@ -23,7 +23,7 @@ export default function Cart() {
 
   return (
     <div>
-      <h1>Your Cart</h1>
+      <h1>Your Result</h1>
       <Link href="/" >
           <a>GO back</a>
         </Link>

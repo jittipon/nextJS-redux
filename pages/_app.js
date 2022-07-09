@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import { UserContext } from '../lib/context';
 import { useUserData } from '../lib/hooks';
 import { ChakraProvider } from '@chakra-ui/react'
+import { Toaster } from 'react-hot-toast';
 
 
 function MyApp({ Component, pageProps }) {
@@ -16,6 +17,7 @@ function MyApp({ Component, pageProps }) {
         <UserContext.Provider value={userData}>
           <Navbar />
           <Component {...pageProps} />
+          <Toaster />
         </UserContext.Provider>
       </Provider>
     </ChakraProvider>

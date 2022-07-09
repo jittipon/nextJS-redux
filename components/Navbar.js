@@ -7,21 +7,42 @@ import { signOut } from 'firebase/auth';
 import styles from '../styles/Home.module.scss'
 import { firestore, googleAuthProvider } from '../lib/firebase';
 import { Button, ButtonGroup } from '@chakra-ui/react'
-
+import toast from 'react-hot-toast';
+import { useEffect } from 'react';
+import { useState } from 'react';
 // Top navbar
 export default function Navbar() {
   const { user, username } = useContext(UserContext);
+  const [log, setlog] = useState(false);
 
   const router = useRouter();
 
+  useEffect(() => {
+    console.log(user);
+
+    if (user != null && log == true) {
+      toast.success('login sucess!')
+      setlog(false);
+
+
+    } else if (log == true) {
+      toast.success('logout sucess!')
+      setlog(false);
+
+    }
+  }, [user]);
+
   const signOutNow = () => {
     signOut(auth);
+    // toast.success('logout sucess!')
+    setlog(true);
     router.reload();
   }
 
   function SignInButton() {
     const signInWithGoogle = async () => {
-      await auth.signInWithPopup(googleAuthProvider);
+      await auth.signInWithPopup(googleAuthProvider)
+      setlog(true);
     };
 
     return (
@@ -50,18 +71,25 @@ export default function Navbar() {
         {/* user is signed-in and has username */}
         {username && (
           <>
-            <Button style={{marginRight:"2rem"}} colorScheme='red' variant='solid' onClick={signOutNow}>
+            <div className={styles.username}>
+              <h1>{username}</h1>
+            </div>
+            <Button style={{ marginRight: "2rem" }} colorScheme='red' variant='solid' onClick={signOutNow}>
               Logout
             </Button>
-            {/* <button style={{marginRight:"0.5rem"}} onClick={signOutNow}>Sign Out</button> */}
-            <Link href={`/`}>
-              <img src={user?.photoURL || '/hacker.png'} width="40px" height="30px" />
-            </Link>
+            <div style={{ cursor: "pointer",width:"5rem"}}>
+              <Link href={"/enter"}>
+                <img src={user?.photoURL || '/favicon.ico'} width="40px" height="30px" />
+              </Link>
+            </div>
           </>
         )}
         {/* user is not signed OR has not created username */}
         {!username && (
-          <SignInButton />
+          <Link href={"/enter"}>
+            <button>login</button>
+          </Link>
+          // <SignInButton />
         )}
       </div>
     </nav>

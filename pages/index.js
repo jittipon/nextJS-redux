@@ -6,8 +6,15 @@ import AddTodoForm from '../components/Todo/AddTodoForm';
 import TodoList from '../components/Todo/TodoList';
 import TotalCompleteItems from '../components/Todo/TotalCompleteItems';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
+import { Box } from '@chakra-ui/react'
+import { useContext } from 'react';
+import { UserContext } from '../lib/context';
 
 export default function Home() {
+
+  const { user, username } = useContext(UserContext);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -17,14 +24,34 @@ export default function Home() {
       </Head>
 
       <main >
-        <h1 className={styles.title}>My TodoList</h1>
-        <Link href="/Cart" >
-          <a>GO TO your Cart</a>
-        </Link>
-        
-        <AddTodoForm />
-			  <TodoList />
-		  	<TotalCompleteItems />  
+        {username && (
+          <>
+              <h1 className={styles.title}>Jittipon.resume.website</h1>
+
+            {/* <button className='btn btn-success' onClick={() => toast.success('hello toast!')}>
+          Toast Me
+        </button> */}
+            <Link href="/Result" >
+              <a>another page</a>
+            </Link>
+
+            <AddTodoForm />
+            <TodoList />
+            <TotalCompleteItems />
+          </>
+        )}
+
+        {!username && (
+          <div>
+            <Box w='100%' h='100vh' bgGradient='linear(to-r, green.100, pink.100)' className={styles.box}>
+              <h1 className={styles.entertext}>Please Login !!</h1>
+
+            </Box>
+          </div>
+
+        )}
+
+
 
       </main>
 

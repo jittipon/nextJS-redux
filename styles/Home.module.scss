@@ -1,23 +1,25 @@
 @import "mixins";
 @import "navbar";
+@import "form";
 
 $color-primary: #0070f3;
+$color-white: #eaeaea;
+$color-yellow: #eec255;
 
 
 .container {
   margin-top: 5rem;
-  padding: 0 2rem;
+  // padding: 0 2rem;
 }
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 20rem;
+  // width: 20rem;
 }
 
 .footer {
@@ -36,32 +38,68 @@ $color-primary: #0070f3;
   }
 }
 
-
-
 .title {
-  color: $color-primary;
-  text-decoration: none;
-}
-
-.title :hover {
-  text-decoration: underline;
-}
-
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
+  height: 100%;
+  font-size: 9rem;
   text-align: center;
+  /* Fallback: Set a background color. */
+  background-color: #CA4246;
+  
+  /* Create the gradient. */
+   background-image: linear-gradient(
+        45deg,
+        #CA4246 16.666%, 
+        #E16541 16.666%, 
+        #E16541 33.333%, 
+        #F18F43 33.333%, 
+        #F18F43 50%, 
+        #8B9862 50%, 
+        #8B9862 66.666%, 
+        #476098 66.666%, 
+        #476098 83.333%, 
+        #A7489B 83.333%);
+  
+  background-size: 100%;
+  background-repeat: repeat;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  
+    animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
+
 }
 
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
+.title:hover{
+    animation: rainbow-text-simple-animation 0.5s ease-in forwards;
+}
+@keyframes rainbow-text-simple-animation-rev {
+    0% {
+        background-size: 650%;
+    }
+    40% {
+        background-size: 650%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+@keyframes rainbow-text-simple-animation {
+    0% {
+        background-size: 100%;
+    }
+    80% {
+        background-size: 650%;
+    }
+    100% {
+        background-size: 650%;
+    }
+}
+
+.entertext {
+  font-size: 2rem;
+  text-align: center;
+  color: #080606;
+  margin-top: 2rem;
 }
 
 .code {
@@ -116,9 +154,19 @@ $color-primary: #0070f3;
   margin-left: 0.5rem;
 }
 
+.box {
+  align-items: center;
+  justify-content: center;
+}
+
+.imgprofile{
+  cursor: pointer;
+  height: 10rem;
+}
+
 @include desktop () {
   .title {
-  color: #bb2d3b;
+    color: #bb2d3b;
 
   }
 }
