@@ -12,14 +12,12 @@ import { useContext } from 'react';
 import { UserContext } from '../lib/context';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { Spinner } from '@chakra-ui/react'
 
 export default function TodoPage() {
-    let isLogin = false;
-    const { user, username } = useContext(UserContext);
-    const count = useSelector((state) => state.counter.value)
+    const { username } = useContext(UserContext);
 
     console.log(username);
-    console.log(count);
 
     return (
         <div className={styles.container}>
@@ -33,10 +31,6 @@ export default function TodoPage() {
                 {username && (
                     <>
                         <h1 className={styles.title}>Jittipon.resume.website</h1>
-
-                        {/* <button className='btn btn-success' onClick={() => toast.success('hello toast!')}>
-          Toast Me
-        </button> */}
                         <Link href="/Result" >
                             <a>another page</a>
                         </Link>
@@ -47,18 +41,18 @@ export default function TodoPage() {
                     </>
                 )}
 
-                {!username && count == 0 && (
-                    <div className={styles.welcome}>
-                        <h1>Loader</h1>
-
+                {!username &&(
+                    <div className={styles.welcome} style={{marginTop:"50rem"}}>
+                        <Spinner
+                            thickness='4px'
+                            speed='0.65s'
+                            emptyColor='gray.200'
+                            color='blue.500'
+                            size='xl'
+                        />
                     </div>
-
                 )}
-
-
-
             </main>
-
         </div>
     )
 }

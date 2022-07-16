@@ -12,8 +12,6 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { IoIosLogOut } from 'react-icons/io';
 
-
-
 export default function Navbar() {
   const { user, username } = useContext(UserContext);
   const [log, setlog] = useState(false);
@@ -41,10 +39,8 @@ export default function Navbar() {
 
   const signOutNow = () => {
     signOut(auth);
-    // toast.success('logout sucess!')
     setlog(true);
     router.push('/');
-    // router.reload();
   }
 
   function SignInButton() {
@@ -87,7 +83,6 @@ export default function Navbar() {
       
 
       <div style={{ display: "flex", flexDirection: "row" }}>
-        {/* user is signed-in and has username */}
         {username && (
           <>
             <div className={styles.username}>
@@ -103,7 +98,6 @@ export default function Navbar() {
             </div>
           </>
         )}
-        {/* user is not signed OR has not created username */}
         {!username && (
           <Link href={"/enter"}>
             <button>login</button>

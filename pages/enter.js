@@ -18,7 +18,7 @@ export default function Enter(props) {
   const { user, username } = useContext(UserContext);
   const [log, setlog] = useState(false);
   const router = useRouter();
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log(user);
@@ -164,7 +164,7 @@ export default function Enter(props) {
           <h3>set your username</h3>
           <form onSubmit={onSubmit}>
             {/* <input name="username" placeholder="myname" value={formValue} onChange={onChange} /> */}
-            <InputGroup>
+            <InputGroup style={{marginBottom:"1rem"}}>
               <InputLeftElement
                 pointerEvents='none'
                 children={<AtSignIcon color='gray.300' />}
@@ -172,7 +172,7 @@ export default function Enter(props) {
               />
               <Input name="username" placeholder="myname" value={formValue} onChange={onChange} />
             </InputGroup>
-            <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
+            <UsernameMessage username={formValue} isValid={isValid} loading={loading}/>
             <div>
 
 
@@ -201,15 +201,15 @@ export default function Enter(props) {
       </div>
     } else if (isValid && username.length >= 3) {
       return <div>
-        <p style={{ color: "green" }}>{username} is available!</p>
-        <Button colorScheme='teal' variant='solid' type='submit' disabled={!isValid}> 
+        <p style={{ color: "green",marginBottom:"0.5rem" }}>{username} is available!</p>
+        <Button colorScheme='teal' variant='solid' type='submit' disabled={!isValid}>
           Choose
         </Button>
         {/* <button type="submit" style={{ marginTop: "2rem" }} className='btn btn-primary mb-2' disabled={!isValid}>
           Choose
         </button> */}
       </div>
-    } else if (username && !isValid) {
+    } else if (username && !isValid && username.length >= 3) {
       return <p style={{ color: "red" }}>That username is taken!</p>;
     } else {
       return <p></p>;

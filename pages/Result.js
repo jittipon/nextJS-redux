@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { getTodoAsync } from '../redux/todoSlice';
 import TodoItem from '../components/Todo/TodoItem';
 import Link from 'next/link';
@@ -10,26 +10,22 @@ export default function Result() {
 
   const todos = useSelector((state) => state.todos);
 
-	const dispatch = useDispatch();
-
-
-	useEffect(() => {
-
-		dispatch(getTodoAsync());
-
-
-	}, [dispatch]);
-
+  const dispatch = useDispatch();
 
   return (
-    <div>
-      <h1>Your Result</h1>
+    <div style={{ textAlign: "center" }}>
+      <h1 style={{ marginTop: "10rem",fontSize:"3rem" }}>Your Result</h1>
       <Link href="/" >
-          <a>GO back</a>
-        </Link>
-      {todos.map((todo) => (
-				<TodoItem id={todo.id} title={todo.title} completed={todo.completed} />
-			))}
+        <a style={{color:"red",fontSize:"1.5rem"}}>GO back</a>
+      </Link>
+      <div style={{marginTop:"5rem"}}>
+        {todos.map((todo) => (
+          <ul>
+            <li>{todo.title}</li>
+          </ul>
+        ))}
+
+      </div>
     </div>
   )
 }
