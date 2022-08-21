@@ -38,11 +38,6 @@ let todos = [
 		title: 'audi',
 		completed: false,
 	},
-	// {
-	// 	id: nanoid(),
-	// 	title: 'bmw',
-	// 	completed: true,
-	// },
 ];
 
 app.get('/todos', (req, res) => res.status(200).send(todos));
